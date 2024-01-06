@@ -26,7 +26,8 @@ namespace OnlineShop.Contollers
 
 
             if (Id <= 0) return BadRequest();
-            Product product = await _context.Products.Include(p => p.Category)
+            Product product = await _context.Products
+                .Include(p => p.Category).Include(p=>p.ProductSizes).ThenInclude(ps=>ps.Size)
                 .Include(p => p.ProductImages).FirstOrDefaultAsync(p => p.Id == Id);
 
             if (product == null) return NotFound();

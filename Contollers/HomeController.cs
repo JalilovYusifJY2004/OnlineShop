@@ -17,11 +17,14 @@ namespace OnlineShop.Contollers
         public async Task<IActionResult> Index()
         {
             List<Slide> slides =await _context.Slides.OrderBy(s=>s.Order).Take(3).ToListAsync();
+          
             List<Product> products = await _context.Products.Include(p=>p.ProductImages.Where(pi => pi.IsPrimary!=null)).ToListAsync();
+           List<Category> categories= await _context.Categories.ToListAsync();
             HomeVm vm = new HomeVm
             {
                 Slides = slides,
-                Products = products
+                Products = products,
+                Categories = categories
             };
             
             return View(vm);

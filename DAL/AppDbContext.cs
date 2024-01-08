@@ -13,5 +13,6 @@ namespace OnlineShop.DAL
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<Setting> Settings { get; set; }
     }
 }
